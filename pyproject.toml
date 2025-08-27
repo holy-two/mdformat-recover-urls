@@ -1,0 +1,20 @@
+[project]
+name = "mdformat-recover-urls"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["mdformat>=0.7.17"]
+
+[project.entry-points."mdformat.parser_extension"]
+recover-urls = "mdformat_recover_urls"
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib", "--strict-markers", "--strict-config"]
+pythonpath = ["."]
+xfail_strict = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
