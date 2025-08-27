@@ -18,9 +18,9 @@ def _is_pct_encoded(s: str) -> bool:
 
 
 def _recover_urls(node: RenderTreeNode, context: RenderContext) -> str:
-    title = node.content or ""
+    title = "".join(child.render(context) for child in (node.children or []))
     url = node.attrs.get("href", "")
-    if type(url) is str and _MD_REL_LINK.match(url):
+    if isinstance(url, str) and _MD_REL_LINK.match(url):
         url = unquote(url) if _is_pct_encoded(url) else url
     return f"[{title}]({url})"
 

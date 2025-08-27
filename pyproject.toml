@@ -1,20 +1,25 @@
 [project]
 name = "mdformat-recover-urls"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+version = "0.1.1"
+description = "mdformat plugin: recover relative and anchor URLs without percent-encoding"
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.8"
-dependencies = ["mdformat>=0.7.17"]
+license = "MIT"
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+dependencies = [
+  "mdformat>=0.7.17",
+  "markdown-it-py>=2.2.0",
+]
 
 [project.entry-points."mdformat.parser_extension"]
-recover-urls = "mdformat_recover_urls"
+recover-urls = "mdformat_recover_urls.plugin"
 
-[tool.pytest.ini_options]
-addopts = ["--import-mode=importlib", "--strict-markers", "--strict-config"]
-pythonpath = ["."]
-xfail_strict = true
+[project.optional-dependencies]
+test = ["pytest>=8"]
 
-[dependency-groups]
-dev = [
-    "pytest>=8.3.5",
-]
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["mdformat_recover_urls"]
