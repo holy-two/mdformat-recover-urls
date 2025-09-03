@@ -10,7 +10,7 @@ dependencies = ["mdformat>=0.7.17", "markdown-it-py>=2.2.0"]
 urls = { github = "https://github.com/holy-two/mdformat-recover-urls" }
 
 [dependency-groups]
-dev = ["pytest>=8.3.5"]
+dev = ["pytest>=8.3.5", "mdformat-toc>=0.3.0"]
 
 [project.entry-points."mdformat.parser_extension"]
 recover-urls = "mdformat_recover_urls.plugin"

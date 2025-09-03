@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.8"
 resolution-markers = [
     "python_full_version >= '3.9'",
@@ -125,6 +125,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "mdformat-toc" },
     { name = "pytest", version = "8.3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "pytest", version = "8.4.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
 ]
@@ -136,7 +137,23 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=8.3.5" }]
+dev = [
+    { name = "mdformat-toc", specifier = ">=0.3.0" },
+    { name = "pytest", specifier = ">=8.3.5" },
+]
+
+[[package]]
+name = "mdformat-toc"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mdformat", version = "0.7.17", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "mdformat", version = "0.7.22", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b1/5c/c3dfdf66aba3468ef031be23fe25083f2d5410de86fd4f86f76571e2e94d/mdformat-toc-0.3.0.tar.gz", hash = "sha256:e8735f7517068f274b58b83407491b75445dc938473a3d5fa6467c0db0142daa", size = 9847, upload-time = "2021-04-12T20:52:14.607Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/21/1e/dabc477b3e564c358bf84afa6f8e4995a8440c384df8407c360ebb8f659e/mdformat_toc-0.3.0-py3-none-any.whl", hash = "sha256:49d1f47d563f47405f3c165c6a4c30e8404a39f56ae254a27c2a90dd7eae1849", size = 9752, upload-time = "2021-04-12T20:52:15.58Z" },
+]
 
 [[package]]
 name = "mdurl"
