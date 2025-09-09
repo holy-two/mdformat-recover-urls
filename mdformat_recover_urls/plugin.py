@@ -21,7 +21,7 @@ def _is_pct_encoded(s: str) -> bool:
 
 def _unquote_url(url: str) -> str:
     """Unquote URL if it's a relative link or a fragment."""
-    if isinstance(url, str) and _MD_REL_LINK.match(url):
+    if _MD_REL_LINK.match(url):
         url = unquote(url) if _is_pct_encoded(url) else url
     return url
 
@@ -29,7 +29,8 @@ def _unquote_url(url: str) -> str:
 def _recover_urls(node: RenderTreeNode, context: RenderContext) -> str:
     """Recover percent-encoded URLs in link nodes."""
     title = "".join(child.render(context) for child in (node.children or []))
-    url = _unquote_url(node.attrs.get("href", ""))
+    if isinstance(url := node.attrs.get("href", ""), str):
+        url = _unquote_url(url)
     return f"[{title}]({url})"
 
 
@@ -44,7 +45,7 @@ RENDERERS: Mapping[str, Render] = {
 # https://github.com/hukkin/mdformat/issues/312#issuecomment-1586025822
 # So we're going to monkey-patch mdformat-toc's link rendering.
 try:
-    from mdformat_toc import plugin
+    from mdformat_toc import plugin # pyright: ignore[reportMissingImports]
 
     # Save the original function.
     original_func = plugin._maybe_add_link_brackets
